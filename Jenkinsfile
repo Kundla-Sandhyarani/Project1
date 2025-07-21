@@ -9,7 +9,11 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('MySonarQube') {
-                    sh 'mvn sonar:sonar'
+                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')])
+    }
+}
+
+                    'mvn sonar:sonar'
                 }
             }
         }
