@@ -20,6 +20,7 @@ pipeline {
 
         stage('Dependency Check') {
             steps {
+                sh 'chmod +x dependency-check.sh'
                 sh './dependency-check.sh'
             }
         }
