@@ -20,10 +20,17 @@ pipeline {
 
         stage('Dependency Check') {
             steps {
-                sh 'chmod +x dependency-check.sh'
-                sh './dependency-check.sh'
-            }
-        }
+                sh '''
+                /opt/dependency-check/bin/dependency-check.sh \
+                    --project Project1 \
+                    --scan . \
+                    --format HTML \
+                    --out dependency-report.html \
+                    --data /opt/dependency-check/data
+        '''
+    }
+}
+
 
         stage('Docker Build') {
             steps {
