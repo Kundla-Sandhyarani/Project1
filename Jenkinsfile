@@ -21,16 +21,25 @@ pipeline {
         stage('Dependency Check') {
             steps {
                 sh '''
-                /opt/dependency-check/bin/dependency-check.sh \
-                    --project Project1 \
-                    --scan . \
-                    --format HTML \
-                    --out dependency-report.html \
-                    --data /opt/dependency-check/data
-        '''
-    }
-}
+                    /opt/dependency-check/bin/dependency-check.sh \
+                      --project Project1 \
+                      --scan . \
+                      --format HTML \
+                      --out dependency-report.html \
+                      --data /opt/dependency-check/data
+                '''
+            }
+        }
 
+        stage('Publish Dependency Report') {
+            steps {
+                publishHTML([
+                    reportDir: '.', 
+                    reportFiles: 'dependency-report.html',
+                    reportName: 'Dependency Check Report'
+                ])
+            }
+        }
 
         stage('Docker Build') {
             steps {
