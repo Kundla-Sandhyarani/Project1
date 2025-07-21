@@ -9,14 +9,11 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('MySonarQube') {
-                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')])
+    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+        sh 'mvn sonar:sonar -Dsonar.token=$SONAR_TOKEN'
     }
 }
 
-                    'mvn sonar:sonar'
-                }
-            }
-        }
         stage('Dependency Check') {
             steps {
                 sh './dependency-check.sh'
