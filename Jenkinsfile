@@ -20,17 +20,17 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh 'docker build -t sample-java-poc .'
+                sh 'docker build -t Project1 .'
             }
         }
         stage('Trivy Scan') {
             steps {
-                sh 'trivy image sample-java-poc'
+                sh 'trivy image Project1'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 8080:8080 sample-java-poc'
+                sh 'docker run -d -p 8080:8080 Project1'
             }
         }
     }
