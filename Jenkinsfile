@@ -53,7 +53,7 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                sh "trivy image project1:${env.BUILD_NUMBER}"
+                sh "trivy image --timeout 5m project1:${env.BUILD_NUMBER}"
             }
         }
 
