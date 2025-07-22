@@ -53,7 +53,7 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                sh "trivy image --scanners vuln --skip-update --cache-dir $WORKSPACE/.trivy-cache --severity HIGH,CRITICAL project1:latest"
+                sh "trivy image --scanners vuln --cache-dir /var/lib/jenkins/workspace/Project-1/.trivy-cache --severity HIGH,CRITICAL project1:latest"
             }
         }
 
