@@ -47,19 +47,19 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh "docker build -t project1:${env.BUILD_NUMBER} ."
+                sh "docker build -t project1:latest ."
             }
         }
 
         stage('Trivy Scan') {
             steps {
-                sh "trivy image --scanners vuln --skip-update --cache-dir $WORKSPACE/.trivy-cache --severity HIGH,CRITICAL project1:${env.BUILD_NUMBER}"
+                sh "trivy image --scanners vuln --skip-update --cache-dir $WORKSPACE/.trivy-cache --severity HIGH,CRITICAL project1:latest"
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 8080:8080 Project1'
+                sh 'docker run -d -p 8080:8080 project1'
             }
         }
     }
