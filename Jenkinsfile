@@ -45,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('Docker Img Build') {
+        stage('Docker Build') {
             steps {
                 sh "docker build -t project1:latest ."
             }
