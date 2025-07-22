@@ -53,7 +53,7 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                sh 'trivy image Project1'
+                sh "trivy image project1:${env.BUILD_NUMBER}"
             }
         }
 
