@@ -24,7 +24,7 @@
 
     <build>
         <plugins>
-            <!-- Ensure executable JAR with Main-Class -->
+            <!-- Makes the JAR executable by specifying the entry point -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -32,7 +32,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.Main</mainClass>
+                            <mainClass>com.example.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
