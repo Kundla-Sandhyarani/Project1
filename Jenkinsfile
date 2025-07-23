@@ -47,19 +47,19 @@ pipeline {
 
         stage('Docker Img Build') {
             steps {
-                sh "docker build -t project1:latest ."
+                sh "docker build -t sandhya:latest ."
             }
         }
 
         stage('Trivy Scan') {
             steps {
-                sh "trivy image --scanners vuln --skip-db-update --cache-dir /var/lib/jenkins/.trivy-cache --severity HIGH,CRITICAL project1:latest"
+                sh "trivy image --scanners vuln --skip-db-update --cache-dir /var/lib/jenkins/.trivy-cache --severity HIGH,CRITICAL sandhya:latest"
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 8081:8080 project1'
+                sh 'docker run -d -p 8081:8080 sandhya'
             }
         }
     }
