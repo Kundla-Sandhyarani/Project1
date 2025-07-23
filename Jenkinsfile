@@ -59,7 +59,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 8081:8080 sandhya'
+                sh 'docker run -d -p 8082:8080 sandhya'
             }
         }
     }
